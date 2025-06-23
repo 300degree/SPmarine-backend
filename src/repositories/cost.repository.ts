@@ -16,11 +16,13 @@ export class CostRepository {
   }
 
   public async findById(id: string) {
-    const [tugboat, order] = id.split("-");
-    const ret = await this.entities.findOne({ where: {
+    const [tugboat, order] = id.split('-');
+    const ret = await this.entities.findOne({
+      where: {
         tugboatId: tugboat,
-        orderId: order
-    }});
+        orderId: order,
+      },
+    });
     if (!ret) throw new NotFoundException();
 
     return ret;

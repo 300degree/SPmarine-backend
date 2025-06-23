@@ -19,14 +19,14 @@ export class TugboatRepository {
 
   public async getTugboats() {
     return this.entities.find({
-      relations: ['station']
+      relations: ['station'],
     });
   }
 
   public async getTugboatById(id: string): Promise<Tugboat | null> {
     return await this.entities.findOne({
       where: { id: id },
-      relations: ['station']
+      relations: ['station'],
     });
   }
 

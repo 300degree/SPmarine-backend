@@ -17,14 +17,14 @@ export class BargeRepository {
 
   public async getBarges(): Promise<Barge[]> {
     return this.entities.find({
-      relations: ['station']
+      relations: ['station'],
     });
   }
 
   public async getBargeById(id: string): Promise<Barge | null> {
     return await this.entities.findOne({
       where: { id: id },
-      relations: ['station']
+      relations: ['station'],
     });
   }
 

@@ -1,91 +1,99 @@
 import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { Station } from './station.entity';
+
+import { Station } from '@/entities/station.entity';
 
 @Entity({ name: 'Order' })
 export class Order {
-  @PrimaryColumn({ type: 'varchar', length: 255 })
-  id: string;
+  @PrimaryColumn({ name: 'Id', type: 'varchar', length: 255 })
+  public id: string;
 
-  @Column({ type: 'enum', enum: ['import', 'export'] })
-  type: 'import' | 'export';
+  @Column({ name: 'Type', type: 'enum', enum: ['import', 'export'] })
+  public type: 'import' | 'export';
 
-  @Column({ type: 'varchar', length: 255 })
-  fromPoint: string;
+  @Column({ name: 'FromPoint', type: 'varchar', length: 255 })
+  public fromPoint: string;
 
-  @Column({ type: 'varchar', length: 255 })
-  destPoint: string;
+  @Column({ name: 'DestPoint', type: 'varchar', length: 255 })
+  public destPoint: string;
 
-  @Column({ name: 'startStationId', type: 'varchar', length: 255, nullable: true })
-  startStationId: string;
+  @Column({
+    name: 'StartStationId',
+    type: 'varchar',
+    length: 255,
+    nullable: true,
+  })
+  public startStationId: string;
 
-  // Column for destination station foreign key
-  @Column({ name: 'destStationId', type: 'varchar', length: 255, nullable: true })
-  destStationId: string;
+  @Column({
+    name: 'DestStationId',
+    type: 'varchar',
+    length: 255,
+    nullable: true,
+  })
+  public destStationId: string;
 
-  // Relation to start station
-  @ManyToOne(() => Station, station => station.start_stations)
-  @JoinColumn({ name: 'startStationId', referencedColumnName: 'id' })
-  start_station: Station;
+  @ManyToOne(() => Station, (station) => station.startStations)
+  @JoinColumn({ name: 'StartStationId', referencedColumnName: 'id' })
+  public startStation: Station;
 
-  // Relation to destination station
-  @ManyToOne(() => Station, station => station.dest_stations)
-  @JoinColumn({ name: 'destStationId', referencedColumnName: 'id' })
-  dest_station: Station;
+  @ManyToOne(() => Station, (station) => station.destStations)
+  @JoinColumn({ name: 'DestStationId', referencedColumnName: 'id' })
+  public destStation: Station;
 
-  @Column({ type: 'varchar', length: 255 })
-  productName: string;
+  @Column({ name: 'ProductName', type: 'varchar', length: 255 })
+  public productName: string;
 
-  @Column('float')
-  demand: number;
+  @Column({ name: 'Demand', type: 'float' })
+  public demand: number;
 
-  @Column({ type: 'datetime' })
-  startDateTime: Date;
+  @Column({ name: 'StartDateTime', type: 'datetime' })
+  public startDateTime: Date;
 
-  @Column({ type: 'datetime' })
-  dueDateTime: Date;
+  @Column({ name: 'DueDateTime', type: 'datetime' })
+  public dueDateTime: Date;
 
-  @Column('float')
-  loadingRate: number;
+  @Column({ name: '', type: 'float' })
+  public loadingRate: number;
 
-  @Column('float')
-  cr1: number;
+  @Column({ name: 'CR1', type: 'float' })
+  public cr1: number;
 
-  @Column('float')
-  cr2: number;
+  @Column({ name: 'CR2', type: 'float' })
+  public cr2: number;
 
-  @Column('float')
-  cr3: number;
+  @Column({ name: 'CR3', type: 'float' })
+  public cr3: number;
 
-  @Column('float')
-  cr4: number;
+  @Column({ name: 'CR4', type: 'float' })
+  public cr4: number;
 
-  @Column('float')
-  cr5: number;
+  @Column({ name: 'CR5', type: 'float' })
+  public cr5: number;
 
-  @Column('float')
-  cr6: number;
+  @Column({ name: 'CR6', type: 'float' })
+  public cr6: number;
 
-  @Column('float')
-  cr7: number;
+  @Column({ name: 'CR7', type: 'float' })
+  public cr7: number;
 
-  @Column('float')
-  timeReadyCR1: number;
+  @Column({ name: 'TimeReadyCR1', type: 'float' })
+  public timeReadyCR1: number;
 
-  @Column('float')
-  timeReadyCR2: number;
+  @Column({ name: 'TimeReadyCR2', type: 'float' })
+  public timeReadyCR2: number;
 
-  @Column('float')
-  timeReadyCR3: number;
+  @Column({ name: 'TimeReadyCR3', type: 'float' })
+  public timeReadyCR3: number;
 
-  @Column('float')
-  timeReadyCR4: number;
+  @Column({ name: 'TimeReadyCR4', type: 'float' })
+  public timeReadyCR4: number;
 
-  @Column('float')
-  timeReadyCR5: number;
+  @Column({ name: 'TimeReadyCR5', type: 'float' })
+  public timeReadyCR5: number;
 
-  @Column('float')
-  timeReadyCR6: number;
+  @Column({ name: 'TimeReadyCR6', type: 'float' })
+  public timeReadyCR6: number;
 
-  @Column('float')
-  timeReadyCR7: number;
+  @Column({ name: 'TimeReadyCR7', type: 'float' })
+  public timeReadyCR7: number;
 }

@@ -31,11 +31,11 @@ export class CostController {
   }
 
   @Get(':id')
-  public async findOne(@Param("id") id: string) {
+  public async findOne(@Param('id') id: string) {
     try {
-        const ret = await this.serivce.findById(id);
-    
-        return ret;
+      const ret = await this.serivce.findById(id);
+
+      return ret;
     } catch (e) {
       throw new HttpException(
         {

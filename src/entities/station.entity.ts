@@ -28,18 +28,15 @@ export class Station {
   @Column({ type: 'float' })
   public distanceKm: number;
 
-  // @Column({ type: 'varchar', length: 255 })
-  // public customerId: string;
-  
-  @OneToMany(() => Barge, barge => barge.station)
-  barges: Barge[];
-  
-  @OneToMany(() => Tugboat, tugboat => tugboat.station)
-  tugboats: Tugboat[];
+  @OneToMany(() => Barge, (barge) => barge.station)
+  public barges: Barge[];
 
-  @OneToMany(() => Order, order => order.start_station)
-  start_stations: Order[];
+  @OneToMany(() => Tugboat, (tugboat) => tugboat.station)
+  public tugboats: Tugboat[];
 
-  @OneToMany(() => Order, order => order.dest_station)
-  dest_stations: Order[];
+  @OneToMany(() => Order, (order) => order.startStation)
+  public startStations: Order[];
+
+  @OneToMany(() => Order, (order) => order.destStation)
+  public destStations: Order[];
 }

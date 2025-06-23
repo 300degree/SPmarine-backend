@@ -19,7 +19,7 @@ export class OrderRepository {
    */
   public async getOrder() {
     return this.entities.find({
-      relations: ['start_station', 'dest_station']
+      relations: ['startStation', 'destStation'],
     });
   }
 
@@ -54,8 +54,8 @@ export class OrderRepository {
             type: row.Type as 'import' | 'export',
             fromPoint: row.FromPoint,
             destPoint: row.DestPoint,
-            start_station: row.StartStationId ,
-            dest_station: row.DestStationId ,  
+            startStation: row.StartStationId,
+            destStation: row.DestStationId,
             productName: row.ProductName,
             demand: parseFloat(row.Demand),
             startDateTime: new Date(row.StartDateTime),
