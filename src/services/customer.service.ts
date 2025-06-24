@@ -1,25 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
-import { Customer } from '@/entities/customer.entity';
-import { CustomerRepository } from '@/repositories/customer.repository';
+import { Customer } from "@/entities/customer.entity";
+import { CustomerRepository } from "@/repositories/customer.repository";
 
 @Injectable()
 export class CustomerService {
-  constructor(private readonly repository: CustomerRepository) {}
+	constructor(private readonly repository: CustomerRepository) {}
 
-  public async getCustomers(): Promise<Customer[]> {
-    return await this.repository.getCustomers();
-  }
+	public async getCustomers(): Promise<Customer[]> {
+		return await this.repository.getCustomers();
+	}
 
-  public async getCustomerById(id: string) {
-    return await this.repository.getCustomerById(id);
-  }
+	public async getCustomerById(id: string) {
+		return await this.repository.getCustomerById(id);
+	}
 
-  public async updateCustomer(id: string, body: Customer) {
-    return await this.repository.updateCustomer(id, body);
-  }
+	public async updateCustomer(id: string, body: Customer) {
+		return await this.repository.updateCustomer(id, body);
+	}
 
-  /* public async upload(buffer: Buffer): Promise<Barge[]> {
+	/* public async upload(buffer: Buffer): Promise<Barge[]> {
     return await this.repository.upload(buffer);
   } */
 }
