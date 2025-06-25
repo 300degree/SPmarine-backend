@@ -10,5 +10,6 @@ import { StationService } from "@/services/station.service";
 	imports: [TypeOrmModule.forFeature([Station])],
 	controllers: [StationController],
 	providers: [StationService, StationRepository],
+	exports: [StationRepository],
 })
 export class StationModule {}

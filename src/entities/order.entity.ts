@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
 
 import { Station } from "@/entities/station.entity";
+import { Customer } from "@/entities/customer.entity";
 
 @Entity({ name: "Order" })
 export class Order {
@@ -32,16 +33,20 @@ export class Order {
 	})
 	public destStationId: string;
 
-	@ManyToOne(() => Station, (station) => station.startStations)
+	@ManyToOne(() => Station, (s) => s.startStations)
 	@JoinColumn({ name: "StartStationId", referencedColumnName: "id" })
 	public startStation: Station;
 
-	@ManyToOne(() => Station, (station) => station.destStations)
+	@ManyToOne(() => Station, (s) => s.destStations)
 	@JoinColumn({ name: "DestStationId", referencedColumnName: "id" })
 	public destStation: Station;
 
 	@Column({ name: "ProductName", type: "varchar", length: 255 })
 	public productName: string;
+
+	@ManyToOne(() => Customer, (c) => c.address)
+	@JoinColumn({ name: "destPoint", referencedColumnName: "id" })
+	public customers: Customer;
 
 	@Column({ name: "Demand", type: "float" })
 	public demand: number;

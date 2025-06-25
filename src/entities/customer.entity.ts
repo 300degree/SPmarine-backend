@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToMany, JoinTable } from "typeorm";
+
+import { Station } from "@/entities/station.entity";
 
 @Entity({ name: "Customer" })
 export class Customer {
@@ -13,4 +15,18 @@ export class Customer {
 
 	@Column({ name: "Address", type: "varchar", length: 255 })
 	public address: string;
+
+	@ManyToMany(() => Station, (s) => s.customers)
+	@JoinTable({
+		name: "CustomerStation",
+		joinColumn: {
+			name: "CustomerId",
+			referencedColumnName: "id",
+		},
+		inverseJoinColumn: {
+			name: "StationId",
+			referencedColumnName: "id",
+		},
+	})
+	public stations: Station[];
 }

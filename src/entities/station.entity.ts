@@ -1,7 +1,9 @@
-import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm";
-import { Barge } from "./barge.entity";
-import { Tugboat } from "./tugboat.entity";
-import { Order } from "./order.entity";
+import { Entity, Column, PrimaryColumn, OneToMany, ManyToMany } from "typeorm";
+
+import { Barge } from "@/entities/barge.entity";
+import { Customer } from "@/entities/customer.entity";
+import { Order } from "@/entities/order.entity";
+import { Tugboat } from "@/entities/tugboat.entity";
 
 @Entity({ name: "Station" })
 export class Station {
@@ -28,15 +30,18 @@ export class Station {
 	@Column({ type: "float" })
 	public distanceKm: number;
 
-	@OneToMany(() => Barge, (barge) => barge.station)
+	@OneToMany(() => Barge, (b) => b.station)
 	public barges: Barge[];
 
-	@OneToMany(() => Tugboat, (tugboat) => tugboat.station)
+	@OneToMany(() => Tugboat, (t) => t.station)
 	public tugboats: Tugboat[];
 
-	@OneToMany(() => Order, (order) => order.startStation)
+	@OneToMany(() => Order, (o) => o.startStation)
 	public startStations: Order[];
 
-	@OneToMany(() => Order, (order) => order.destStation)
+	@OneToMany(() => Order, (o) => o.destStation)
 	public destStations: Order[];
+
+	@ManyToMany(() => Customer, (c) => c.stations)
+	public customers: Customer[];
 }

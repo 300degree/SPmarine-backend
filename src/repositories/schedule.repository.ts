@@ -26,8 +26,8 @@ export class ScheduleRepository {
 	public async getSchedulesByTugboatId(id: string): Promise<Schedule[]> {
 		try {
 			return this.entities.find({
-				where: { tugboatId: id },
-				order: { enterDateTime: "ASC" },
+				where: { tugboat_id: id },
+				order: { enter_datetime: "ASC" },
 			});
 		} catch (e) {
 			throw new NotFoundException();
@@ -37,8 +37,8 @@ export class ScheduleRepository {
 	public async getSchedulesByOrderId(id: string): Promise<Schedule[]> {
 		try {
 			return await this.entities.find({
-				where: { tugboatId: id },
-				order: { enterDateTime: "ASC" },
+				where: { tugboat_id: id },
+				order: { enter_datetime: "ASC" },
 			});
 		} catch (e) {
 			throw new NotFoundException();
@@ -53,8 +53,8 @@ export class ScheduleRepository {
 		exit?: string,
 	): Promise<Schedule[]> {
 		type mock_type = {
-			tugboatId: string;
-			orderId: string;
+			tugboat_id: string;
+			order_id: string;
 			point?: string;
 			enter?: string;
 			exit?: string;
@@ -62,8 +62,8 @@ export class ScheduleRepository {
 
 		try {
 			const mock: mock_type = {
-				tugboatId: tugboatId,
-				orderId: orderId,
+				tugboat_id: tugboatId,
+				order_id: orderId,
 			};
 
 			if (point) mock.point = point;
@@ -72,7 +72,7 @@ export class ScheduleRepository {
 
 			return await this.entities.find({
 				where: mock,
-				order: { enterDateTime: "ASC" },
+				order: { enter_datetime: "ASC" },
 			});
 		} catch (e) {
 			throw new NotFoundException();
@@ -84,19 +84,19 @@ export class ScheduleRepository {
 		orderId?: string,
 	): Promise<Schedule[]> {
 		type mock_type = {
-			typePoint: string;
-			tugboatId?: string;
-			orderId?: string;
+			type_point: string;
+			tugboat_id?: string;
+			order_id?: string;
 		};
 
 		try {
-			const mock: mock_type = { typePoint: "main_point" };
-			if (tugboatId) mock.tugboatId = tugboatId;
-			if (orderId) mock.orderId = orderId;
+			const mock: mock_type = { type_point: "main_point" };
+			if (tugboatId) mock.tugboat_id = tugboatId;
+			if (orderId) mock.order_id = orderId;
 
 			return await this.entities.find({
 				where: mock,
-				order: { enterDateTime: "ASC" },
+				order: { enter_datetime: "ASC" },
 			});
 		} catch (e) {
 			throw new NotFoundException();

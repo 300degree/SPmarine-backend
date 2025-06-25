@@ -114,9 +114,7 @@ export class ScheduleController {
 	}
 
 	@Get("view-type-point")
-	public async getViewScheduleTypePoint(): ReturnType<
-		ScheduleService["getViewSchedulesTypePoints"]
-	> {
+	public async getViewScheduleTypePoint() {
 		try {
 			return await this.service.getViewSchedulesTypePoints();
 		} catch (e) {
